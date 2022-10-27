@@ -258,49 +258,4 @@ void loop() {
       }
     }
   }
-  /*
-  //ledcWrite(0, 15); // CHANNEL, value(0-255)
-
-  // control button manual
-  int r_btn = digitalRead(pin_button);
-  if(sts_button != r_btn){
-    sts_button = r_btn;
-    sts_light = r_btn;
-    digitalWrite(pin_relay, sts_light);
-  }
-
-
-  // control led by potentiometer
-  
- * para PWM 
- * value:0 -> potentiometer:0
- * value:255 -> potentiometer:4095
- * factor de conversion: value = round(pottentiometer / 16.05)
- 
-
-  int r_poten = digitalRead(pin_poten);
-  ledcWrite(0, round(r_poten/16.05));
-
-  control by LDR
- *  
- *  ldr max = 4095; lightest
- *  ldr min = 0; darkest
- *  and for same value in led user the sample 
- 
-
- // PWM
-  int r_ldr = analogRead(pin_ldr);
-  ledcWrite(0, round(r_ldr/ 16.05));
-  
-  // turn on by ldr
-
-  if(r_ldr < 2047){
-    sts_light = 1;
-    digitalWrite(pin_relay, sts_light);
-  }else{
-    sts_light = 0;
-    digitalWrite(pin_relay, sts_light);
-  }
-  */
-  
 }

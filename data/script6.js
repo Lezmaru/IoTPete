@@ -128,7 +128,7 @@ function changeDataVisible(tempC, tempF, hum){
 
 var chartADC = new Highcharts.Chart({
   chart:{ renderTo:'chart-ADC' },
-  title: { text: 'Valores de LDR' },
+  title: { text: 'Tempearura' },
   series: [{
     showInLegend: false,
     data: []
@@ -144,7 +144,57 @@ var chartADC = new Highcharts.Chart({
     dateTimeLabelFormats: { second:'%S' }
   },
   yAxis: {
-    title: { text: 'Datos de LDR' }
+    title: { text: 'Calentador' }
+  },
+  credits: { enabled: false }
+});
+setInterval(getReadings, 1500);
+setInterval(function ( ) {
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      var myObj = JSON.parse(this.responseText);
+      console.log("------3--------");
+      console.log(myObj);
+       
+      var x = (new Date()).getTime(),
+          y = parseFloat(myObj.ldr);
+      //console.log(this.responseText);
+      if(chartADC.series[0].data.length > 40) {
+        chartADC.series[0].addPoint([x, y], true, true, true);
+      } else {
+        chartADC.series[0].addPoint([x, y], true, false, true);
+      }
+      if(pageCurrent === 3 || pageCurrent ===5){
+        document.getElementById('pwm_value').innerHTML = myObj.pwm;
+      }
+
+     
+
+    }
+  };
+  xhttp.open("GET", "/LDR", true);
+  xhttp.send();
+}, 1000 ) ;
+var chartADC1 = new Highcharts.Chart({
+  chart:{ renderTo:'chart-ADC1' },
+  title: { text: 'Tempearura' },
+  series: [{
+    showInLegend: false,
+    data: []
+  }],
+  plotOptions: {
+    line: { animation: false,
+      dataLabels: { enabled: true }
+    },
+    series: { color: '#18009c' }
+  },
+  xAxis: {
+    type: 'datetime',
+    dateTimeLabelFormats: { second:'%S' }
+  },
+  yAxis: {
+    title: { text: 'Enfriador' }
   },
   credits: { enabled: false }
 });

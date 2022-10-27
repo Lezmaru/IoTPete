@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"> -->
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
@@ -12,14 +13,17 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
-    <title>Lámpara</title>
-    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <title>Horno</title>
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"> -->
+     
+
 </head>
 <body onload="getData()">
 
     <div class="contaup">
-      <input type="checkbox" id="check">
+      <input type="checkbox" id="check" >
       <label for="check">
           <i class="fas fa-bars" id="btnCheck"></i>
           <i class="fas fa-times" id="btnClose"></i>
@@ -28,7 +32,7 @@
           <header>Menú</header>
           <ul>
             <li><a href="index.html" ><i class="fa-solid fa-dice-one"></i>Operación 1</a></li>
-            <li><a href="page2.html"><i class="fa-solid fa-dice-two"></i>Operación 2</a></li> 
+            <li><a href="page2.html" ><i class="fa-solid fa-dice-two"></i>Operación 2</a></li> 
             <li><a href="page3.html"><i class="fa-solid fa-dice-three"></i>Operación 3</a></li>
             <li><a href="page4.html"><i class="fa-solid fa-dice-four"></i>Operación 4</a></li>
             <li><a href="#" class="active"><i class="fa-solid fa-dice-five"></i>Operación 5</a></li>
@@ -40,20 +44,20 @@
   
     <div class="container">
         <div class="row">
-          <div class="col d-flex align-items-center justify-content-center">
+          <div class="col">
             <img
             class="logo-ucb"
             src="https://ucblpz.com/wp-content/uploads/2018/12/UCB-logo-lapaz.png"
           />
           </div>
-          <div class="col d-flex align-items-center justify-content-center">
+          <div class="col">
             <div>
-                <h2 class="titulo-h2">Internet de las cosas - Lámpara inteligente</h2>
+                <h2 class="titulo-h2">Internet de las cosas - Horno inteligente</h2>
             </div>
             
             
           </div>
-          <div class="col d-flex align-items-center justify-content-center">
+          <div class="col">
             
             <div class="waveStrength-3">
                 <div class="wave">
@@ -68,14 +72,20 @@
               </div>
 
           </div>
+          <div class="col">
+            <img src="https://i.ibb.co/cg2H8FQ/logo2.jpg" style="width: 160px;" alt="">
+            <p>
+              G.O.A.T.'s
+            </p>
+          </div>
         </div>
     </div>
 
 
     <div class="container c_infoLampara">
-        <h5 class="titulo">Estado de la Lámpara</h5>
+        <h5 class="titulo">Estado del Horno</h5>
          <br>
-            <div class="label" onclick="sendAction1(4)">
+            <div class="label" onclick="sendAction1(3)">
               <input type="checkbox"/>
               <span class="btn-real-sw"></span>
               <i id="pulsador-button" class="fa fa-power-off"></i>
@@ -83,21 +93,46 @@
     </div>
     <br>
     <br>
-    <div class="slider">
-      <input type="range" id="ldrlimit" min="0" max="100" value="50"   oninput="rangeValue.innerText = this.value" onchange="sendLimitLDR(4)">
-      <p id="rangeValue">50</p> %
-  </div>
-  <br>
-    <br>
 
-    <br>
-    <div class="container valores_pwm">
-        Valor de LDR limite <p id="ldrlimval">789</p>
+<h2 style="text-align: center;">Configuración de tiempo de operación:</h2>
+  <div class="container d-flex justify-content-center">
+  <div class="p-5 bg-dark bg-gradient text-white">
+    <h2 class="text-center mt-2">Control por Horarios</h2>
+    <div id="digital-clock" class="bg-warning text-center text-black p-2 h2 w-full">
     </div>
-    <br>
+    <h3 class="text-center">Programación del horario</h3>
+    <div id="alarm-list"></div>
+    <hr />
+    <form class="text-center mt-2">
+      <h5>Hora de encendido</h5>
+      <div class="container">
+        <label for="hour">H:</label>
+        <input type="number" name="hour" id="hour1" min="0" max="23" value="0">
+        <label for=minute>M:</label>
+        <input type="number" name="minute" id="minute1" min="0" max="59" value="0">
+        <label for=second>S:</label>
+        <input type="number" name="second" id="second1" min="0" max="59" value="0">
+      </div>
+      <br>
+      <h5>Hora de apagado</h5>
+      <div class="container">
+        <label for="hour">H:</label>
+        <input type="number" name="hour" id="hour2" min="0" max="23" value="0">
+        <label for=minute>M:</label>
+        <input type="number" name="minute" id="minute2" min="0" max="59" value="0">
+        <label for=second>S:</label>
+        <input type="number" name="second" id="second2" min="0" max="59" value="0">
+      </div>
+      
 
-    <div id="chart-ADC" class="container"></div>
 
+      <div class="d-grid gap-2 mt-2">
+        <br>
+        <input type="button" class="btn btn-warning btn-block " id="Apagado" value="Definir horario " onclick = "mostrar()">
+      </div>
+    </form>
+  </div>  
+  </div>
     <br>
     <br>
 
@@ -155,8 +190,93 @@
       </p>
     </div>
     <script>
-      var pageCurrent = 4;
+      const alarms = [];
+      const getElement = (id) => document.getElementById(id);
+      const createElement = (tag) => document.createElementById(tag);
+
+      class Clock {
+        locale ="es-ES"
+
+        init(){
+          setInterval(this.build, 1000)
+        }
+
+        build = () => {
+          const clockEl = getElement("digital-clock");
+          const time = this.toLocaleTimeString(new Date);
+          clockEl.innerHTML = time;
+          this.checkAlarms(time);
+        }
+
+        clearForm = () => {
+          getElement("hour").value = "";
+          getElement("minute").value = "";
+          getElement("second").value = "";
+          getElement("hour").focus();
+        }
+        addAlarm = () => {
+          const date = new Date;
+          date.setHours(getElement("hour").value);
+          date.setMinutes(getElement("minute").value);
+          date.setSeconds(getElement("second").value);
+          alarms.push(date);
+          this.clearForm();
+          this.displayAlarms();
+        }
+        renderAlarm = (alarm, alarmList) => {
+          const li = createElement("li");
+          li.innerHTML = 'Horario Programado:  ${this.toLocaleTimeString(alarm)}';
+          alarmList.appendChild(li);
+        }
+        displayAlarms = () => {
+          alarms.sort((d1, d2) => d1 - d2);
+          const alarmList = getElement("alarm-list");
+          alarmList.innerHTML = "";
+          for (let i = 0; i < alarms.length; i++){
+            this.renderAlarm(alarms[i], alarmList);
+          }
+        }
+        checkAlarms = (time) => {
+          for (let i = 0; i < alarms.length; i++){
+            const alarm = this.toLocaleTimeString(alarms[i]);
+            if (alarm == time){
+              alarms.splice(i,1);
+              this.displayAlarms();
+              alert('Encendido Programado para ${alarm}');
+            }
+          }
+        }
+        toLocaleTimeString = (date) =>
+        {
+          return date.toLocaleTimeString(
+            this.locale, 
+            {
+              hour: "2-digit",
+              minute:"2-digit",
+              second:"2-digit",
+            }
+            ) 
+        }
+      }
+      const clock = new Clock;
+      clock.init();
+    </script>
+    <script>
+      
+      var pageCurrent = 3;
+    
+      function mostrar(){
+        var h1= document.getElementById("hour1").value;
+        var m1 = document.getElementById("minute1").value;
+        var s1 = document.getElementById("second1").value;
+        var h2= document.getElementById("hour2").value;
+        var m2 = document.getElementById("minute2").value;
+        var s2 = document.getElementById("second2").value;
+        convierte();
+        swal("Hora de encendido: " +h1+":"+m1+":"+s1+"\nHora de apagado:"+h2+":"+m2+":"+s2);
+      }
     </script>
     <script src="script.js"></script>
+
 </body>
 </html>

@@ -14,7 +14,7 @@
     />
     <link rel="stylesheet" href="style.css">
     <script src="https://code.highcharts.com/highcharts.js"></script>
-    <title>Lámpara</title>
+    <title>Horno</title>
 </head>
 <body onload="getData()">
 
@@ -48,7 +48,7 @@
           </div>
           <div class="col d-flex align-items-center justify-content-center">
             <div>
-                <h2 class="titulo-h2">Internet de las cosas - Lámpara inteligente</h2>
+                <h2 class="titulo-h2">Internet de las cosas - Horno inteligente</h2>
             </div>
             
             
@@ -73,7 +73,7 @@
 
 
     <div class="container c_infoLampara">
-        <h5 class="titulo">Estado de la Lámpara</h5>
+        <h5 class="titulo">Estado del Horno</h5>
          <br>
             <div class="label" onclick="sendAction1(2)">
               <input type="checkbox"/>
@@ -83,11 +83,15 @@
     </div>
     <br>
     <div class="container valores_pwm">
-        Valor de PWM <p id="pwm_value3">789</p>
+        Datos LM35 <p id="pwm_value3"></p>
     </div>
     <br>
 
     <div id="chart-ADC" class="container"></div>
+
+    <br>
+    <br>
+    <div id="chart-ADC1" class="container"></div>
 
     <br>
     <br>

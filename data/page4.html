@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"> -->
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+      integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+    <title>Lámpara</title>
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"> -->
+     
+
+</head>
+<body onload="getData()">
+
+    <div class="contaup">
+      <input type="checkbox" id="check" >
+      <label for="check">
+          <i class="fas fa-bars" id="btnCheck"></i>
+          <i class="fas fa-times" id="btnClose"></i>
+      </label>
+      <div class="sidebar1">
+          <header>Menú</header>
+          <ul>
+            <li><a href="index.html" ><i class="fa-solid fa-dice-one"></i>Operación 1</a></li>
+            <li><a href="page2.html" ><i class="fa-solid fa-dice-two"></i>Operación 2</a></li> 
+            <li><a href="page3.html"><i class="fa-solid fa-dice-three"></i>Operación 3</a></li>
+            <li><a href="#" class="active"><i class="fa-solid fa-dice-four"></i>Operación 4</a></li>
+            <li><a href="page5.html"><i class="fa-solid fa-dice-five"></i>Operación 5</a></li>
+            <li><a href="page6.html"><i class="fa-solid fa-dice-six"></i>Operación 6</a></li> 
+              
+          </ul>
+      </div>
+  </div>
+  
+    <div class="container">
+        <div class="row">
+          <div class="col">
+            <img
+            class="logo-ucb"
+            src="https://ucblpz.com/wp-content/uploads/2018/12/UCB-logo-lapaz.png"
+          />
+          </div>
+          <div class="col">
+            <div>
+                <h2 class="titulo-h2">Internet de las cosas - Lámpara inteligente</h2>
+            </div>
+            
+            
+          </div>
+          <div class="col">
+            
+            <div class="waveStrength-3">
+                <div class="wave">
+                  <div class="wave">
+                    <div class="wave">
+                      <div class="wave">
+                        <div class="wave"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+          </div>
+          <div class="col">
+            <img src="https://i.ibb.co/cg2H8FQ/logo2.jpg" style="width: 160px;" alt="">
+            <p>
+              G.O.A.T.'s
+            </p>
+          </div>
+        </div>
+    </div>
+
+
+    <div class="container c_infoLampara">
+        <h5 class="titulo">Estado de la Lámpara</h5>
+         <br>
+            <div class="label" onclick="sendAction1(3)">
+              <input type="checkbox"/>
+              <span class="btn-real-sw"></span>
+              <i id="pulsador-button" class="fa fa-power-off"></i>
+        </div>
+    </div>
+    <br>
+    <br>
+
+<h2 style="text-align: center;">Control por horario programado:</h2>
+  <div class="container d-flex justify-content-center">
+  <div class="p-5 bg-dark bg-gradient text-white">
+    <h2 class="text-center mt-2">Control por Horario</h2>
+    <div id="digital-clock" class="bg-warning text-center text-black p-2 h2 w-full">
+    </div>
+    <h3 class="text-center">Programación del horario</h3>
+    <div id="alarm-list"></div>
+    <hr />
+    <form class="text-center mt-2">
+      <h5>Hora de encendido</h5>
+      <div class="container">
+        <label for="hour">H:</label>
+        <input type="number" name="hour" id="hour1" min="0" max="23" value="0">
+        <label for=minute>M:</label>
+        <input type="number" name="minute" id="minute1" min="0" max="59" value="0">
+        <label for=second>S:</label>
+        <input type="number" name="second" id="second1" min="0" max="59" value="0">
+      </div>
+      <br>
+      <h5>Hora de apagado</h5>
+      <div class="container">
+        <label for="hour">H:</label>
+        <input type="number" name="hour" id="hour2" min="0" max="23" value="0">
+        <label for=minute>M:</label>
+        <input type="number" name="minute" id="minute2" min="0" max="59" value="0">
+        <label for=second>S:</label>
+        <input type="number" name="second" id="second2" min="0" max="59" value="0">
+      </div>
+      
+
+
+      <div class="d-grid gap-2 mt-2">
+        <br>
+        <input type="button" class="btn btn-warning btn-block " id="Apagado" value="Definir horario " onclick = "mostrar()">
+      </div>
+    </form>
+  </div>  
+  </div>
+    <br>
+    <br>
+
+
+    <div class="container">
+        <table class="table table-striped table-dark">
+            <thead>
+              <tr>
+                <th scope="col">IP Local</th>
+                <th scope="col">Hostname</th>
+                <th scope="col">Status</th>
+                <th scope="col">SSID</th>
+                <th scope="col">PSK</th>
+                <th scope="col">BSSID</th>
+                <th scope="col">RSSI</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th id="ip"> </th>
+                <td id="hn"> </td>
+                <td id="st"> </td>
+                <td id="ss"> </td>
+                <td id="ps"> </td>
+                <td id="bs"> </td>
+                <td id="rs"> </td> 
+              </tr>
+               
+            </tbody>
+          </table>
+    </div>
+
+    <div class="container footer">
+      <div class="row">
+        <div class="col">
+          <img
+            src="https://www.linkpicture.com/q/20210201_225708_2.jpg"
+            type="image"  
+            style="width: 250px; height: 250px; object-fit:cover;" 
+            />
+          <p>Alan Wiler Zarate Chino</p>
+        </div>
+        <div class="col">
+          <img src="https://www.linkpicture.com/q/591_67344437_20190722_233525-5.jpg" type="image">
+          <p>Luis Felipe Caro</p>
+        </div>
+        <div class="col">
+          <img src='https://www.linkpicture.com/q/perfil_2.jpg' type='image'>
+          <p>Pablo Marquez</p>
+        </div>
+      </div>
+      
+      <p>
+        <i class="fa-regular fa-copyright"></i>  Derechos Reservados
+      </p>
+    </div>
+    <script>
+      const alarms = [];
+      const getElement = (id) => document.getElementById(id);
+      const createElement = (tag) => document.createElementById(tag);
+
+      class Clock {
+        locale ="es-ES"
+
+        init(){
+          setInterval(this.build, 1000)
+        }
+
+        build = () => {
+          const clockEl = getElement("digital-clock");
+          const time = this.toLocaleTimeString(new Date);
+          clockEl.innerHTML = time;
+          this.checkAlarms(time);
+        }
+
+        clearForm = () => {
+          getElement("hour").value = "";
+          getElement("minute").value = "";
+          getElement("second").value = "";
+          getElement("hour").focus();
+        }
+        addAlarm = () => {
+          const date = new Date;
+          date.setHours(getElement("hour").value);
+          date.setMinutes(getElement("minute").value);
+          date.setSeconds(getElement("second").value);
+          alarms.push(date);
+          this.clearForm();
+          this.displayAlarms();
+        }
+        renderAlarm = (alarm, alarmList) => {
+          const li = createElement("li");
+          li.innerHTML = 'Horario Programado:  ${this.toLocaleTimeString(alarm)}';
+          alarmList.appendChild(li);
+        }
+        displayAlarms = () => {
+          alarms.sort((d1, d2) => d1 - d2);
+          const alarmList = getElement("alarm-list");
+          alarmList.innerHTML = "";
+          for (let i = 0; i < alarms.length; i++){
+            this.renderAlarm(alarms[i], alarmList);
+          }
+        }
+        checkAlarms = (time) => {
+          for (let i = 0; i < alarms.length; i++){
+            const alarm = this.toLocaleTimeString(alarms[i]);
+            if (alarm == time){
+              alarms.splice(i,1);
+              this.displayAlarms();
+              alert('Encendido Programado para ${alarm}');
+            }
+          }
+        }
+        toLocaleTimeString = (date) =>
+        {
+          return date.toLocaleTimeString(
+            this.locale, 
+            {
+              hour: "2-digit",
+              minute:"2-digit",
+              second:"2-digit",
+            }
+            ) 
+        }
+      }
+      const clock = new Clock;
+      clock.init();
+    </script>
+    <script>
+      
+      var pageCurrent = 3;
+    
+      function mostrar(){
+        var h1= document.getElementById("hour1").value;
+        var m1 = document.getElementById("minute1").value;
+        var s1 = document.getElementById("second1").value;
+        var h2= document.getElementById("hour2").value;
+        var m2 = document.getElementById("minute2").value;
+        var s2 = document.getElementById("second2").value;
+        convierte();
+        swal("Hora de encendido: " +h1+":"+m1+":"+s1+"\nHora de apagado:"+h2+":"+m2+":"+s2);
+      }
+    </script>
+    <script src="script.js"></script>
+
+</body>
+</html>
